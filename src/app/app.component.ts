@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Deploy } from '@ionic/cloud-angular';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
@@ -11,7 +12,7 @@ import { TodoPage } from '../pages/todo/todo';
 export class MyApp {
   rootPage = TodoPage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, public deploy: Deploy) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
