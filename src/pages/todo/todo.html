@@ -7,19 +7,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-input #input placeholder="What do you need to do?" (keydown.enter)="addTask(input)"></ion-input>
+  <ion-input #input style="font-size: 2em" placeholder="What do you need to do?" (keydown.enter)="addTask(input)"></ion-input>
 
-  <ion-list>
-    <ion-item *ngFor="let task of tasks" [ngClass]="{done: task.checked}">
+  <ion-list no-lines>
+    <ion-item-divider>Still To Do</ion-item-divider>
+    <ion-item *ngFor="let task of active()" [ngClass]="{done: task.checked}">
       <ion-label>{{task.title}}</ion-label>
-      <ion-checkbox [(ngModel)]="task.checked"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="task.checked" (ionChange)="save()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item-divider>Completed</ion-item-divider>
+    <ion-item *ngFor="let task of completed()" [ngClass]="{done: task.checked}">
+      <ion-label>{{task.title}}</ion-label>
+      <ion-checkbox [(ngModel)]="task.checked" (ionChange)="save()"></ion-checkbox>
     </ion-item>
   </ion-list>
-
-  <!-- <ion-list>
-    <ion-item *ngFor="let task of tasks.filter(t => t.checked)">
-      <ion-label>{{task.title}}</ion-label>
-      <ion-checkbox [(ngModel)]="task.checked"></ion-checkbox>
-    </ion-item>
-  </ion-list> -->
 </ion-content>
